@@ -7,9 +7,6 @@ jobs:
   clean-up:
     name: Clean up stack
     runs-on: ubuntu-latest
-    environment: dev
-    
-    permissions:
     steps:
       - run: echo "${{ github.event.pull_request.head.ref }}
       - run: echo "${{ github.event.pull_request.head.ref_name }}

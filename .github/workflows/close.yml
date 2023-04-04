@@ -5,11 +5,10 @@ on:
 
 jobs:
   clean-up:
+    env:
+      SERVICE_NAME: test
     name: Clean up stack
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ github.event.pull_request.head.ref }}"
-      - id: stack_name
-        run: echo "name=Something-`echo "${{ github.event.pull_request.head.ref }}" | sed 's/.*\///'`" >> $GITHUB_OUTPUT
-      - name: hvaharuforgearochtalents
-        run: echo ${{ steps.stack_name.outputs.name }}
+      - run: echo "${{ format('{0}-review-{1}', env.SERVICE_NAME, github.event.number)  }}"

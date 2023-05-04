@@ -1,5 +1,6 @@
 name: Cleanup on aisle 5
 on:
+  push:
   pull_request:
     types: [opened, synchronize, closed]
 

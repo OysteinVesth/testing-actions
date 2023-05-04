@@ -8,13 +8,22 @@ env:
   ENV: devvi
 
 jobs:
+  set_environment:
+    outputs:
+      my_env: ${{ steps.setenv.outputs.my_env }}
+    runs-on: ubuntu-latest
+    steps:
+    - id: setenv
+      run: echo "{my_env}={${{ env.ENV }}}" >> $GITHUB_OUTPUT
+
   clean-up:
+    needs: [set_environment]
     env:
       SERVICE_NAME: test
     name: Clean up stack
     runs-on: ubuntu-latest
     environment:
-      name: ${{ env.ENV }}
+      name: ${{ needs.set_environment.outputs.my_env }}
     steps:
       - run: echo "${{ github.event.pull_request.head.ref }}"
       - run: echo "${{ format('{0}-review-{1}', env.SERVICE_NAME, github.event.number)  }}"

@@ -13,7 +13,7 @@ jobs:
       SERVICE_NAME: test
     name: Clean up stack
     runs-on: ubuntu-latest
-    environment: ${{ env.ENV }}
+    environment: devvi
     steps:
       - run: echo "${{ github.event.pull_request.head.ref }}"
       - run: echo "${{ format('{0}-review-{1}', env.SERVICE_NAME, github.event.number)  }}"

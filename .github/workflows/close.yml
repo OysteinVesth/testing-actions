@@ -13,17 +13,8 @@ jobs:
       my_env: ${{ steps.setenv.outputs.my_env }}
     runs-on: ubuntu-latest
     steps:
-    - id: setenv
-      run: echo "{my_env}={${{ env.ENV }}}" >> $GITHUB_OUTPUT
-
-  clean-up:
-    needs: [set_environment]
-    env:
-      SERVICE_NAME: test
-    name: Clean up stack
-    runs-on: ubuntu-latest
-    environment:
-      name: ${{ needs.set_environment.outputs.my_env }}
-    steps:
-      - run: echo "${{ github.event.pull_request.head.ref }}"
-      - run: echo "${{ format('{0}-review-{1}', env.SERVICE_NAME, github.event.number)  }}"
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=TAG_NAME::${GITHUB_REF#refs/tags/}
+      - name: Log the version
+        run: echo "The new tag is ${{ steps.get_version.outputs.TAG_NAME }}"

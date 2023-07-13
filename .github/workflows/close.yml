@@ -15,6 +15,6 @@ jobs:
     steps:
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=TAG_NAME::${GITHUB_REF#refs/tags/}
+        run: echo "{version}={${GITHUB_REF#refs/tags/}}" >> $GITHUB_OUTPUT
       - name: Log the version
-        run: echo "The new tag is ${{ steps.get_version.outputs.TAG_NAME }}"
+        run: echo "The new tag is ${{ steps.get_version.outputs.version }}"

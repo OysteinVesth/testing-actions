@@ -1,6 +1,9 @@
 name: Cleanup on aisle 5
 on:
   push:
+
+env:
+  something_else: This is from testing-actions
     
 jobs:
   call-workflow-in-another-repo:

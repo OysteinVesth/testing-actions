@@ -1,0 +1,11 @@
+name: Cleanup on aisle 5
+on:
+  push:
+    
+jobs:
+  call-workflow-in-another-repo:
+    uses: OysteinVesth/reusable-action/.github/workflows/deployx.yml@main
+    with:
+      config-path: .github/labeler.yml
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}

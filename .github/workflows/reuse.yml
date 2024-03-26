@@ -18,8 +18,7 @@ jobs:
     with:
       some-input: Bla de bla
       environment: dev
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+    secrets: inherit
   call-workflow-in-another-repo-prod:
     uses: OysteinVesth/reusable-action/.github/workflows/deploy.yml@main
     with:

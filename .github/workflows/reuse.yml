@@ -1,11 +1,29 @@
 name: Cleanup on aisle 5
 on:
   push:
+
+env:
+  something_else: This is from testing-actions
     
 jobs:
   call-workflow-in-another-repo:
     uses: OysteinVesth/reusable-action/.github/workflows/deploy.yml@main
     with:
-      config-path: .github/labeler.yml
+      some-input: Bla de bla
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
+
+  call-workflow-in-another-repo-dev:
+    uses: OysteinVesth/reusable-action/.github/workflows/deploy.yml@main
+    with:
+      some-input: Bla de bla
+      environment: dev
+    secrets: inherit
+  call-workflow-in-another-repo-prod:
+    uses: OysteinVesth/reusable-action/.github/workflows/deploy.yml@main
+    with:
+      some-input: Bla de bla
+      environment: prod
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
